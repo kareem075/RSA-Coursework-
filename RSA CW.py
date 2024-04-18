@@ -34,4 +34,31 @@ if is_coprime(e, T):
     print(f"{e} and {T} are coprime.")
 else:
     print(f"{e} and {T} are not coprime.")
+# -------------------------------------------second function----------------------------------------------------------------
+def extended_GCD(a, b):
+    x0, x1, y0, y1 = 1, 0, 0, 1
+    while b:
+        q, a, b = a // b, b, a % b
+        x0, x1 = x1, x0 - q * x1
+        y0, y1 = y1, y0 - q * y1
+    return a, x0, y0
+
+def calculate_private_exponent(e, phi_n):
+    phi_n = T
+    gcd, x, y = extended_GCD(e, phi_n)
+    return x % phi_n
+ 
+d = calculate_private_exponent(e, T)
+print(f"Private exponent (d) will be: {d}")
+print ("public key =", (e,n)," Private key=",(d, n))
+
+# Encryption
+M = int(input("Enter a Message:- "))
+C = (M ** e) % n
+print (C)
+
+# Decryption
+cypher = int(input("Enter Cypher Text:- "))
+Message = (cypher ** d) % n 
+print (Message)
 
