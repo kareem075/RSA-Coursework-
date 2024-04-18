@@ -1,5 +1,6 @@
 import random
 import math
+import time
 def primes_in_range(x, y):
     prime_list = []
     for n in range(x, y):
@@ -62,3 +63,16 @@ cypher = int(input("Enter Cypher Text:- "))
 Message = (cypher ** d) % n 
 print (Message)
 
+def brute_force_d(n, e):
+    d = 2
+    begin_time = time.perf_counter()
+    while True:
+        if d*e % T == 1:
+            end_time = time.perf_counter()
+            elapsed_time = end_time - begin_time
+            return d,'and time taken to get D is', elapsed_time
+           
+        d += 1
+d =  brute_force_d(n, e)
+
+print(f"Found private exponent (d): {d}")
