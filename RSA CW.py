@@ -35,7 +35,8 @@ if is_coprime(e, T):
     print(f"{e} and {T} are coprime.")
 else:
     print(f"{e} and {T} are not coprime.")
-# -------------------------------------------second function----------------------------------------------------------------
+
+
 def extended_GCD(a, b):
     x0, x1, y0, y1 = 1, 0, 0, 1
     while b:
@@ -44,10 +45,9 @@ def extended_GCD(a, b):
         y0, y1 = y1, y0 - q * y1
     return a, x0, y0
 
-def calculate_private_exponent(e, phi_n):
-    phi_n = T
-    gcd, x, y = extended_GCD(e, phi_n)
-    return x % phi_n
+def calculate_private_exponent(e, T):
+    gcd, x, y = extended_GCD(e, T)
+    return x % T
  
 d = calculate_private_exponent(e, T)
 print(f"Private exponent (d) will be: {d}")
@@ -63,7 +63,7 @@ cypher = int(input("Enter Cypher Text:- "))
 Message = (cypher ** d) % n 
 print (Message)
 
-def brute_force_d(n, e):
+def brute_force_d(T, e):
     d = 2
     begin_time = time.perf_counter()
     while True:
@@ -73,6 +73,5 @@ def brute_force_d(n, e):
             return d,'and time taken to get D is', elapsed_time
            
         d += 1
-d =  brute_force_d(n, e)
-
+d =  brute_force_d(T, e)
 print(f"Found private exponent (d): {d}")
